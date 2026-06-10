@@ -1,0 +1,177 @@
+---
+// David Sloan Wilson's Seattle Project — the real, active research areas.
+// Governance is the hero tile; five tiles sit in an asymmetric grid below;
+// Paradigm Shift is a photo-less full-width band that links to /start.
+const governance = {
+  slug: 'governance',
+  name: 'Governance',
+  sub: 'How groups make rules that work',
+  img: '/images/domain-governance.jpg',
+};
+
+const tiles = [
+  {
+    slug: 'cities-as-ecosystems',
+    name: 'Cities as Ecosystems',
+    sub: 'Seattle as a living laboratory',
+    img: '/images/domain-urban.jpg',
+    span: 'md:col-span-4',
+    h: 'h-[clamp(260px,32vw,400px)]',
+    n: '02',
+  },
+  {
+    slug: 'business',
+    name: 'Business',
+    sub: 'Why some companies evolve and others don’t',
+    img: '/images/domain-corporate.jpg',
+    span: 'md:col-span-2',
+    h: 'h-[clamp(260px,32vw,400px)]',
+    n: '03',
+  },
+  {
+    slug: 'housing',
+    name: 'Housing',
+    sub: 'The politics of who gets to belong',
+    img: '/images/domain-economics.jpg',
+    span: 'md:col-span-2',
+    h: 'h-[clamp(220px,24vw,300px)]',
+    n: '04',
+  },
+  {
+    slug: 'sports',
+    name: 'Sports',
+    sub: 'Group cohesion at game speed',
+    img: '/images/domain-religion.jpg',
+    span: 'md:col-span-2',
+    h: 'h-[clamp(220px,24vw,300px)]',
+    n: '05',
+  },
+  {
+    slug: 'arts',
+    name: 'Arts',
+    sub: 'Culture as evolutionary signal',
+    img: '/images/domain-psychology.jpg',
+    span: 'md:col-span-2',
+    h: 'h-[clamp(220px,24vw,300px)]',
+    n: '06',
+  },
+];
+---
+
+<section class="section" id="explore">
+  <div class="container-x">
+    <div class="mb-12 reveal">
+      <p class="eyebrow mb-6">The Seattle Project</p>
+      <h2 class="headline text-5xl md:text-7xl text-white leading-none max-w-3xl">
+        Where the theory<br /><span class="text-cyan-glow">meets the street.</span>
+      </h2>
+    </div>
+
+    <!-- Governance — full-width hero tile -->
+    <a
+      href={`/explore/${governance.slug}`}
+      class="group relative block overflow-hidden border border-white/[0.08] hover:border-cyan/40 transition-colors duration-300 reveal h-[clamp(360px,50vw,560px)]"
+    >
+      <div class="absolute inset-0 film-vignette">
+        <img
+          src={governance.img}
+          alt={governance.name}
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.6s] group-hover:scale-105"
+        />
+        <div
+          class="absolute inset-0"
+          style="background:linear-gradient(180deg, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.92) 100%)"
+        >
+        </div>
+        <div
+          class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style="background:radial-gradient(70% 70% at 30% 100%, rgba(0, 212, 212, 0.18) 0%, rgba(8,8,8,0) 70%)"
+        >
+        </div>
+      </div>
+
+      <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end z-10">
+        <span class="mono-label text-cyan mb-3 !text-[0.62rem]">01 · Seattle Project</span>
+        <h3 class="headline text-6xl md:text-8xl text-white leading-[0.9] mb-3">
+          {governance.name}
+        </h3>
+        <p class="text-white/70 text-lg max-w-md leading-snug">{governance.sub}</p>
+        <span
+          class="mono-label text-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4 !text-[0.6rem]"
+          >Enter →</span
+        >
+      </div>
+    </a>
+
+    <!-- Five tiles, asymmetric -->
+    <div class="grid md:grid-cols-6 gap-4 mt-4">
+      {
+        tiles.map((t, i) => (
+          <a
+            href={`/explore/${t.slug}`}
+            class={`group relative block overflow-hidden border border-white/[0.08] hover:border-cyan/40 transition-colors duration-300 reveal ${t.span} ${t.h}`}
+            style={`transition-delay:${0.06 * i}s`}
+          >
+            <div class="absolute inset-0 film-vignette">
+              <img
+                src={t.img}
+                alt={t.name}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] group-hover:scale-110"
+              />
+              <div
+                class="absolute inset-0"
+                style="background:linear-gradient(180deg, rgba(8,8,8,0.15) 0%, rgba(8,8,8,0.55) 45%, rgba(8,8,8,0.92) 100%)"
+              />
+              <div
+                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style="background:radial-gradient(80% 80% at 50% 100%, rgba(0, 212, 212, 0.18) 0%, rgba(8,8,8,0) 70%)"
+              />
+            </div>
+
+            <div class="absolute inset-0 p-6 flex flex-col justify-end z-10">
+              <span class="mono-label text-cyan mb-2 !text-[0.6rem]">{t.n} · Seattle Project</span>
+              <h3 class="headline text-3xl md:text-4xl text-white leading-none mb-2">
+                {t.name}
+              </h3>
+              <p class="text-white/60 group-hover:text-white/80 text-sm leading-snug max-w-xs transition-colors duration-300">
+                {t.sub}
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Paradigm Shift — full-width, no photo, just the point.
+       Top/bottom edges are gradient hairlines that fade at the ends, so the
+       band bleeds into its neighbors instead of being cut by a hard line. -->
+  <a
+    href="/start"
+    class="group relative block w-full mt-12 bg-ink-900 hover:bg-ink-800 transition-colors duration-300"
+  >
+    <div
+      class="absolute top-0 left-0 right-0 h-px"
+      style="background:linear-gradient(to right, transparent, rgba(0, 212, 212,0.3) 50%, transparent);filter:drop-shadow(0 0 5px rgba(0,212,212,0.45))"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-px"
+      style="background:linear-gradient(to right, transparent, rgba(0, 212, 212,0.3) 50%, transparent);filter:drop-shadow(0 0 5px rgba(0,212,212,0.45))"
+    >
+    </div>
+    <div class="container-x py-20 md:py-28 text-center reveal">
+      <span class="mono-label text-cyan !text-[0.62rem]">07 · Paradigm Shift</span>
+      <p
+        class="headline text-[clamp(2rem,5vw,4.25rem)] text-white leading-[1.04] mt-6 max-w-4xl mx-auto"
+      >
+        The goal isn’t a better theory.<br />
+        <span class="text-cyan-glow">It’s a different way of seeing.</span>
+      </p>
+      <span
+        class="mono-label text-white/40 group-hover:text-cyan transition-colors duration-300 mt-8 inline-block !text-[0.6rem]"
+        >Start here →</span
+      >
+    </div>
+  </a>
+</section>

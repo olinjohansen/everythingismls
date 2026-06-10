@@ -1,0 +1,86 @@
+---
+const columns = [
+  {
+    title: 'The Show',
+    links: [
+      { href: '/episodes', label: 'Episodes' },
+      { href: '/start', label: 'Start Here' },
+      { href: '/guests', label: 'Guests' },
+    ],
+  },
+  {
+    title: 'Go Deeper',
+    links: [
+      { href: '/library', label: 'Paper Library' },
+      { href: '/concepts', label: 'Concept Glossary' },
+      { href: '/explore', label: 'Explore by Domain' },
+    ],
+  },
+  {
+    title: 'The Theory',
+    links: [
+      { href: '/david-sloan-wilson', label: 'David Sloan Wilson' },
+      { href: '/concepts/multi-level-selection', label: 'What is MLS?' },
+    ],
+  },
+];
+---
+
+<footer class="relative z-10 bg-ink-900">
+  <!-- Gradient fade divider — the content bleeds into the footer, no hard line -->
+  <div
+    class="absolute top-0 left-0 right-0 h-px"
+    style="background:linear-gradient(to right, transparent, rgba(255,255,255,0.1) 50%, transparent)"
+  >
+  </div>
+  <div class="container-x py-16">
+    <div class="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="block w-2 h-2 bg-cyan"></span>
+          <span class="headline text-2xl text-white tracking-headline">
+            Everything is <span class="text-cyan">MLS</span>
+          </span>
+        </div>
+        <p class="text-white/45 text-sm max-w-xs leading-relaxed">
+          The theory that explains everything. We are going to prove it.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <a href="#" class="btn btn-ghost !py-2.5 !px-4">Spotify</a>
+          <a href="#" class="btn btn-ghost !py-2.5 !px-4">YouTube</a>
+        </div>
+      </div>
+
+      {
+        columns.map((col) => (
+          <div>
+            <h3 class="mono-label text-cyan mb-5">{col.title}</h3>
+            <ul class="space-y-3">
+              {col.links.map((l) => (
+                <li>
+                  <a
+                    href={l.href}
+                    class="text-white/55 hover:text-white text-sm transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row gap-4 md:items-center md:justify-between"
+    >
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/30">
+        © {new Date().getFullYear()} Everything is MLS — Multi-Level Selection
+      </p>
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/30">
+        Olin Johansen · Andy · David Sloan Wilson
+      </p>
+    </div>
+  </div>
+</footer>

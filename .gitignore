@@ -1,0 +1,30 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# astro
+.astro/
+
+# environment
+.env
+.env.production
+.env.development
+
+# logs
+npm-debug.log*
+*.log
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# netlify
+.netlify/
+
+# local Claude Code settings (machine-local, not shared)
+.claude/settings.local.json

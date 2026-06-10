@@ -1,0 +1,17 @@
+TeX Gyre Heros
+==============
+
+The fonts in this directory (heros-regular.woff2, heros-bold.woff2) are
+derived from TeX Gyre Heros, a free, metric-compatible clone of Helvetica
+based on URW Nimbus Sans L.
+
+Copyright 2007–2009 by B. Jackowski and J.M. Nowacki (on behalf of TeX
+Users Groups). Distributed under the GUST Font License (GFL), a free and
+open license. See: https://www.gust.org.pl/projects/e-foundry/licenses
+
+These woff2 files were generated from the official OTF distribution at:
+https://www.gust.org.pl/projects/e-foundry/tex-gyre/heros
+
+They are used here as the on-screen face for headlines, providing true
+Helvetica letterforms consistently across all platforms. Licensed
+"Helvetica Neue" / Helvetica / Arial remain CSS fallbacks.

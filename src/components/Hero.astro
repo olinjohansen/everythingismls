@@ -1,0 +1,77 @@
+---
+// Full-viewport cinematic hero.
+// Photo: brutalist overpass emerging through PNW fog — human structure
+// rising out of nature. The thesis in a single frame.
+---
+
+<section class="relative min-h-[100svh] flex items-center overflow-hidden">
+  <!-- Background photo -->
+  <div class="absolute inset-0 z-0 film-vignette scanlines edge-soak">
+    <img
+      src="/images/hero.jpg"
+      alt="A concrete overpass emerging through Pacific Northwest fog and forest"
+      class="w-full h-full object-cover object-center scale-105"
+      fetchpriority="high"
+    />
+    <!-- Layered dark overlays for legibility + mood -->
+    <div class="absolute inset-0 bg-ink-900/55"></div>
+    <div
+      class="absolute inset-0"
+      style="background:linear-gradient(180deg, rgba(8,8,8,0.75) 0%, rgba(8,8,8,0.25) 38%, rgba(8,8,8,0.85) 100%)"
+    >
+    </div>
+    <div
+      class="absolute inset-0"
+      style="background:radial-gradient(120% 90% at 50% 42%, rgba(0, 212, 212,0.10) 0%, rgba(8,8,8,0) 55%)"
+    >
+    </div>
+  </div>
+
+  <div class="container-x relative z-10 w-full">
+    <div class="max-w-4xl">
+      <p class="eyebrow mb-7 animate-fade-up">A podcast about Multi-Level Selection</p>
+
+      <h1
+        class="headline text-white leading-[0.86] animate-fade-up"
+        style="animation-delay:0.08s"
+      >
+        <span class="block text-[clamp(3.5rem,13vw,11rem)]">Everything is</span>
+        <span class="block text-[clamp(3.5rem,13vw,11rem)]">
+          <span class="text-cyan-glow">Multi-Level Selection.</span>
+        </span>
+      </h1>
+
+      <p
+        class="mt-8 text-lg md:text-2xl text-white/80 font-light max-w-2xl leading-snug animate-fade-up"
+        style="animation-delay:0.16s"
+      >
+        David Sloan Wilson has spent fifty years on this.
+        <span class="text-white"
+          >We’re spending however long it takes to prove he’s right about
+          everything.</span
+        >
+      </p>
+
+      <div
+        class="mt-10 flex flex-wrap gap-4 animate-fade-up"
+        style="animation-delay:0.24s"
+      >
+        <a href="#" class="btn btn-primary">
+          ▸ Listen on Spotify
+        </a>
+        <a href="#" class="btn btn-ghost">
+          ▸ Watch on YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+  >
+    <span class="mono-label text-white/40 !text-[0.6rem]">Keep going</span>
+    <span class="block w-px h-8 bg-gradient-to-b from-cyan to-transparent animate-scroll-hint"
+    ></span>
+  </div>
+</section>

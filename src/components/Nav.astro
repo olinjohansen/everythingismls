@@ -1,0 +1,102 @@
+---
+const links = [
+  { href: '/episodes', label: 'Episodes' },
+  { href: '/library', label: 'Library' },
+  { href: '/concepts', label: 'Concepts' },
+  { href: '/explore', label: 'Explore' },
+  { href: '/start', label: 'Start' },
+  { href: '/david-sloan-wilson', label: 'DSW' },
+  { href: '/guests', label: 'Guests' },
+];
+---
+
+<header
+  id="site-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  data-at-top="true"
+>
+  <div class="container-x flex items-center justify-between h-[72px]">
+    <!-- Wordmark -->
+    <a href="/" class="group flex items-center gap-3 shrink-0">
+      <span class="block w-2 h-2 bg-cyan" style="box-shadow:var(--glow-line)"></span>
+      <span class="headline text-xl text-white leading-none tracking-headline">
+        Everything is <span
+          class="text-cyan"
+          style="text-shadow:0 0 25px rgba(0,212,212,0.8), 0 0 50px rgba(0,212,212,0.3)"
+          >MLS</span
+        >
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <nav class="hidden lg:flex items-center gap-7">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="font-sans text-[0.95rem] tracking-[0.03em] text-white/60 hover:text-cyan transition-colors duration-200"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a href="#subscribe" class="btn btn-primary !py-2.5 !px-4">Subscribe</a>
+    </nav>
+
+    <!-- Mobile toggle -->
+    <button
+      id="menu-toggle"
+      class="lg:hidden flex flex-col gap-[5px] p-2 -mr-2"
+      aria-label="Toggle menu"
+    >
+      <span class="block w-6 h-px bg-white"></span>
+      <span class="block w-6 h-px bg-white"></span>
+      <span class="block w-6 h-px bg-white"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden border-t border-white/10 bg-ink-900/95 backdrop-blur-md"
+  >
+    <nav class="container-x flex flex-col py-4">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="font-sans text-base tracking-[0.03em] text-white/70 hover:text-cyan py-3 border-b border-white/5"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a href="#subscribe" class="btn btn-primary mt-4 justify-center">Subscribe</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Solidify nav background once scrolled past the hero fold
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => {
+    if (!nav) return;
+    const atTop = window.scrollY < 40;
+    nav.dataset.atTop = String(atTop);
+    if (atTop) {
+      nav.classList.remove('bg-ink-900/85', 'backdrop-blur-md', 'border-b', 'border-white/10');
+    } else {
+      nav.classList.add('bg-ink-900/85', 'backdrop-blur-md', 'border-b', 'border-white/10');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  menu?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => menu.classList.add('hidden'))
+  );
+</script>
