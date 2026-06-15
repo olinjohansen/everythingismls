@@ -1,53 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const governance = {
-  name: 'Governance',
-  sub: 'How groups make rules that work',
-  img: '/images/seattle-governance.jpg',
-};
-
+// Six uniform square tiles — 3 cols desktop, 2 tablet, 1 mobile.
 const tiles = [
-  {
-    name: 'Cities as Ecosystems',
-    sub: 'Seattle as a living laboratory',
-    img: '/images/seattle-cities.jpg',
-    span: 'md:col-span-4',
-    h: 'h-[clamp(260px,32vw,400px)]',
-    n: '02',
-  },
-  {
-    name: 'Business',
-    sub: 'Why some companies evolve and others don’t',
-    img: '/images/seattle-business.jpg',
-    span: 'md:col-span-2',
-    h: 'h-[clamp(260px,32vw,400px)]',
-    n: '03',
-  },
-  {
-    name: 'Housing',
-    sub: 'The politics of who gets to belong',
-    img: '/images/seattle-housing.jpg',
-    span: 'md:col-span-2',
-    h: 'h-[clamp(220px,24vw,300px)]',
-    n: '04',
-  },
-  {
-    name: 'Sports',
-    sub: 'Group cohesion at game speed',
-    img: '/images/seattle-sports.jpg',
-    span: 'md:col-span-2',
-    h: 'h-[clamp(220px,24vw,300px)]',
-    n: '05',
-  },
-  {
-    name: 'Arts',
-    sub: 'Culture as evolutionary signal',
-    img: '/images/seattle-arts.jpg',
-    span: 'md:col-span-2',
-    h: 'h-[clamp(220px,24vw,300px)]',
-    n: '06',
-  },
+  { name: 'Governance', sub: 'How groups make rules that work', img: '/images/seattle-governance.jpg' },
+  { name: 'Cities as Ecosystems', sub: 'Seattle as a living laboratory', img: '/images/seattle-cities.jpg' },
+  { name: 'Business', sub: 'Why some companies evolve and others don’t', img: '/images/seattle-business.jpg' },
+  { name: 'Housing', sub: 'The politics of who gets to belong', img: '/images/seattle-housing.jpg' },
+  { name: 'Sports', sub: 'Group cohesion at game speed', img: '/images/seattle-sports.jpg' },
+  { name: 'Arts', sub: 'Culture as evolutionary signal', img: '/images/seattle-arts.jpg' },
 ];
 ---
 
@@ -63,39 +24,11 @@ const tiles = [
         game day.
       </p>
 
-      <!-- Governance — full-width feature tile -->
-      <div
-        class="relative overflow-hidden border border-white/[0.08] reveal h-[clamp(360px,50vw,560px)]"
-      >
-        <div class="absolute inset-0 film-vignette">
-          <img
-            src={governance.img}
-            alt={governance.name}
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-          <div
-            class="absolute inset-0"
-            style="background:linear-gradient(180deg, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.92) 100%)"
-          >
-          </div>
-        </div>
-        <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end z-10">
-          <span class="mono-label text-cyan mb-3 !text-[0.62rem]">01 · Domain</span>
-          <h2 class="headline text-6xl md:text-8xl text-white leading-[0.9] mb-3">
-            {governance.name}
-          </h2>
-          <p class="text-white/70 text-lg max-w-md leading-snug">{governance.sub}</p>
-        </div>
-      </div>
-
-      <!-- Remaining five, asymmetric -->
-      <div class="grid md:grid-cols-6 gap-4 mt-4">
+      <!-- Uniform square grid: 1 / 2 / 3 columns -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {
           tiles.map((t, i) => (
-            <div
-              class={`relative overflow-hidden border border-white/[0.08] reveal ${t.span} ${t.h}`}
-              style={`transition-delay:${0.06 * i}s`}
-            >
+            <div class="relative aspect-square overflow-hidden border border-white/[0.08] reveal" style={`transition-delay:${0.05 * i}s`}>
               <div class="absolute inset-0 film-vignette">
                 <img
                   src={t.img}
@@ -108,11 +41,13 @@ const tiles = [
                 />
               </div>
               <div class="absolute inset-0 p-6 flex flex-col justify-end z-10">
-                <span class="mono-label text-cyan mb-2 !text-[0.6rem]">{t.n} · Domain</span>
+                <span class="mono-label text-cyan mb-2 !text-[0.6rem]">
+                  0{i + 1} · Domain
+                </span>
                 <h2 class="headline text-3xl md:text-4xl text-white leading-none mb-2">
                   {t.name}
                 </h2>
-                <p class="text-white/70 text-sm leading-snug max-w-xs">{t.sub}</p>
+                <p class="text-white/70 text-sm leading-snug">{t.sub}</p>
               </div>
             </div>
           ))
