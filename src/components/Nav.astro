@@ -2,10 +2,9 @@
 const links = [
   { href: '/episodes', label: 'Episodes' },
   { href: '/library', label: 'Library' },
-  { href: '/concepts', label: 'Concepts' },
-  { href: '/explore', label: 'Explore' },
-  { href: '/start', label: 'Start' },
-  { href: '/david-sloan-wilson', label: 'DSW' },
+  { href: '/mls', label: 'MLS' },
+  { href: '/seattle-project', label: 'The Seattle Project' },
+  { href: '/hosts', label: 'Hosts' },
   { href: '/guests', label: 'Guests' },
 ];
 ---
@@ -29,18 +28,17 @@ const links = [
     </a>
 
     <!-- Desktop links -->
-    <nav class="hidden lg:flex items-center gap-7">
+    <nav class="hidden lg:flex items-center gap-6">
       {
         links.map((l) => (
           <a
             href={l.href}
-            class="font-sans text-[0.95rem] tracking-[0.03em] text-white/60 hover:text-cyan transition-colors duration-200"
+            class="font-sans text-[0.9rem] tracking-[0.03em] text-white/60 hover:text-cyan transition-colors duration-200 whitespace-nowrap"
           >
             {l.label}
           </a>
         ))
       }
-      <a href="#subscribe" class="btn btn-primary !py-2.5 !px-4">Subscribe</a>
     </nav>
 
     <!-- Mobile toggle -->
@@ -71,7 +69,6 @@ const links = [
           </a>
         ))
       }
-      <a href="#subscribe" class="btn btn-primary mt-4 justify-center">Subscribe</a>
     </nav>
   </div>
 </header>

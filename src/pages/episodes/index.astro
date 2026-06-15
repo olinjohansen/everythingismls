@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EpisodeCard from '../../components/EpisodeCard.astro';
+import { episodes, seasons } from '../../data/episodes.js';
+
+// Real seasons from data, plus one placeholder tab to show how future
+// seasons slot in. The toggle is wired with a small script below.
+const tabs = [
+  ...seasons.map((s) => ({ season: s, label: `Season ${s}`, available: true })),
+  { season: seasons[0] + 1, label: `Season ${seasons[0] + 1}`, available: false },
+];
+const activeSeason = seasons[0];
+---
+
+<Layout title="Episodes — Everything is MLS">
+  <section class="section">
+    <div class="container-x">
+      <p class="eyebrow mb-6 reveal">The archive</p>
+      <h1 class="headline text-6xl md:text-8xl text-white leading-none mb-12 reveal">
+        Episodes
+      </h1>
+
+      <!-- Season toggle -->
+      <div class="flex flex-wrap gap-2 border-b border-white/[0.08] mb-12 reveal">
+        {
+          tabs.map((t) => (
+            <button
+              class="season-tab font-mono uppercase tracking-[0.18em] text-[0.72rem] px-5 py-3 border-b-2 transition-colors duration-200 disabled:cursor-not-allowed"
+              data-season={t.season}
+              disabled={!t.available}
+              class:list={[
+                t.season === activeSeason
+                  ? 'text-cyan border-cyan'
+                  : t.available
+                    ? 'text-white/55 border-transparent hover:text-white'
+                    : 'text-white/25 border-transparent',
+              ]}
+            >
+              {t.label}
+              {!t.available && <span class="ml-2 text-white/20 normal-case">· soon</span>}
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Panels -->
+      {
+        seasons.map((s) => (
+          <div class="season-panel space-y-8" data-season-panel={s} hidden={s !== activeSeason}>
+            {episodes
+              .filter((e) => e.season === s)
+              .map((e) => (
+                <div class="reveal">
+                  <EpisodeCard episode={e} />
+                </div>
+              ))}
+          </div>
+        ))
+      }
+      <div
+        class="season-panel"
+        data-season-panel={seasons[0] + 1}
+        hidden
+      >
+        <div class="edge-card p-12 text-center">
+          <p class="mono-label text-cyan mb-3">Coming soon</p>
+          <p class="headline text-3xl text-white">Season {seasons[0] + 1} is on the way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.season-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.season-panel');
+  tabs.forEach((tab) => {
+    if (tab.disabled) return;
+    tab.addEventListener('click', () => {
+      const season = tab.dataset.season;
+      tabs.forEach((t) => {
+        const active = t.dataset.season === season;
+        t.classList.toggle('text-cyan', active);
+        t.classList.toggle('border-cyan', active);
+        t.classList.toggle('text-white/55', !active && !t.disabled);
+        t.classList.toggle('border-transparent', !active);
+      });
+      panels.forEach((p) => {
+        p.hidden = p.getAttribute('data-season-panel') !== season;
+      });
+    });
+  });
+</script>

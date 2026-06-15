@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Placeholder guests until guest episodes are published. Swap in real
+// names, topics, and episode links as they go live.
+const guests = [
+  { name: 'Guest Name', topic: 'Topic to be announced', episode: null },
+  { name: 'Guest Name', topic: 'Topic to be announced', episode: null },
+  { name: 'Guest Name', topic: 'Topic to be announced', episode: null },
+  { name: 'Guest Name', topic: 'Topic to be announced', episode: null },
+  { name: 'Guest Name', topic: 'Topic to be announced', episode: null },
+  { name: 'Guest Name', topic: 'Topic to be announced', episode: null },
+];
+
+const accents = ['#5CD4DC', '#8AE2E8', '#3BA8B0', '#A8ECEF', '#5CD4DC', '#8AE2E8'];
+---
+
+<Layout title="Guests — Everything is MLS">
+  <section class="section">
+    <div class="container-x">
+      <p class="eyebrow mb-6 reveal">At the table</p>
+      <h1 class="headline text-6xl md:text-8xl text-white leading-none mb-5 reveal">
+        Guests
+      </h1>
+      <p class="text-white/55 text-lg max-w-xl leading-relaxed mb-12 reveal">
+        Guest profiles are placeholders for now — they’ll fill in as guest
+        episodes are published.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {
+          guests.map((g, i) => (
+            <article class="edge-card reveal flex flex-col" style={`transition-delay:${0.05 * i}s`}>
+              <div
+                class="h-[180px] flex items-center justify-center"
+                style={`background:radial-gradient(120% 120% at 50% 0%, ${accents[i]}22 0%, #0b0b0c 60%)`}
+              >
+                <span class="headline text-5xl" style={`color:${accents[i]}`}>?</span>
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <h2 class="headline text-2xl text-white leading-tight">{g.name}</h2>
+                <p class="text-white/55 text-sm mt-2 flex-1">{g.topic}</p>
+                <div class="border-t border-white/[0.08] mt-4 pt-4">
+                  {g.episode ? (
+                    <a
+                      href={`/episodes/${g.episode}`}
+                      class="mono-label text-white/45 hover:text-cyan transition-colors !text-[0.58rem]"
+                    >
+                      ↳ View episode
+                    </a>
+                  ) : (
+                    <span class="mono-label text-white/25 !text-[0.58rem]">Episode TBA</span>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,88 +1,18 @@
 ---
-// Latest episode — large, dark, cinematic. Placeholder content; will be
-// driven by the `episodes` collection (newest by episodeNumber).
-const ep = {
-  number: '007',
-  title: 'Seattle Is a Superorganism',
-  date: 'June 2, 2026',
-  guest: 'David Sloan Wilson',
-  description:
-    'Why does one city solve collective problems its neighbors can’t? We take MLS down to street level — zoning fights, mutual-aid networks, the unwritten code of a four-way stop — and argue that a city is not a place. It’s a level of selection.',
-  highlight: {
-    time: '41:18',
-    quote:
-      'A city doesn’t have a culture. A city is a tournament between cultures, and the ones that cooperate are winning faster than anyone noticed.',
-    context: 'DSW on why neighborhoods out-evolve nations',
-  },
-};
+import EpisodeCard from './EpisodeCard.astro';
+import { episodes } from '../data/episodes.js';
+
+const latest = episodes[0];
 ---
 
 <section class="section" id="latest">
   <div class="container-x">
-    <p class="eyebrow mb-10 reveal">Latest episode</p>
-
-    <article class="edge-card reveal grid lg:grid-cols-[1.15fr_1fr]">
-      <!-- Visual -->
-      <div class="relative min-h-[280px] lg:min-h-[480px] overflow-hidden group">
-        <img
-          src="/images/episode.jpg"
-          alt="A misty trail descending into Pacific Northwest forest"
-          class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
-        />
-        <div
-          class="absolute inset-0"
-          style="background:linear-gradient(120deg, rgba(8,8,8,0.15) 0%, rgba(8,8,8,0.7) 100%)"
-        >
-        </div>
-        <!-- Play affordance -->
-        <div class="absolute inset-0 flex items-center justify-center">
-          <span
-            class="w-20 h-20 flex items-center justify-center border border-cyan/70 text-cyan text-2xl backdrop-blur-sm bg-ink-900/30 transition-all duration-300 group-hover:bg-cyan group-hover:text-ink-900"
-            style="box-shadow:0 0 40px rgba(0, 212, 212,0.25)"
-          >
-            ▶
-          </span>
-        </div>
-        <span class="absolute top-5 left-5 mono-label text-cyan">Now Playing</span>
-      </div>
-
-      <!-- Body -->
-      <div class="p-8 lg:p-12 flex flex-col">
-        <div class="flex items-center gap-4 mb-5">
-          <span class="font-mono text-5xl text-cyan leading-none">{ep.number}</span>
-          <div class="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/40 leading-relaxed">
-            Episode<br />{ep.date}
-          </div>
-        </div>
-
-        <h2 class="headline text-4xl md:text-5xl text-white mb-4">{ep.title}</h2>
-
-        <p class="text-white/65 leading-relaxed mb-6 max-w-prose2">{ep.description}</p>
-
-        <!-- Timestamp highlight -->
-        <div class="border-l-2 border-cyan pl-5 mb-8 mt-auto">
-          <a href="#" class="group block">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="font-mono text-cyan text-sm">{ep.highlight.time}</span>
-              <span class="mono-label text-white/30 !text-[0.6rem] group-hover:text-cyan transition-colors"
-                >▸ Jump to this moment</span
-              >
-            </div>
-            <p class="text-white/85 italic leading-snug text-[1.05rem]">
-              “{ep.highlight.quote}”
-            </p>
-            <p class="mono-label text-white/35 !text-[0.62rem] mt-2 !tracking-[0.12em]">
-              {ep.highlight.context}
-            </p>
-          </a>
-        </div>
-
-        <div class="flex flex-wrap gap-3">
-          <a href="#" class="btn btn-primary !py-3 !px-5">▸ YouTube</a>
-          <a href="#" class="btn btn-ghost !py-3 !px-5">Spotify</a>
-          <a href="#" class="btn btn-ghost !py-3 !px-5">Apple</a>
-        </div>
-      </div>
-    </article>
+    <div class="flex items-end justify-between gap-6 mb-10 reveal">
+      <p class="eyebrow">Latest episode</p>
+      <a href="/episodes" class="btn btn-ghost shrink-0 hidden md:inline-flex">All episodes →</a>
+    </div>
+    <div class="reveal">
+      <EpisodeCard episode={latest} nowPlaying={true} />
+    </div>
   </div>
 </section>

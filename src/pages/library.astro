@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PaperCard from '../components/PaperCard.astro';
+import { papers } from '../data/papers.js';
+---
+
+<Layout title="Library — Everything is MLS">
+  <section class="section">
+    <div class="container-x">
+      <p class="eyebrow mb-6 reveal">The papers</p>
+      <h1 class="headline text-6xl md:text-8xl text-white leading-none mb-5 reveal">
+        Library
+      </h1>
+      <p class="text-white/60 text-lg max-w-xl leading-relaxed mb-10 reveal">
+        The research behind the show, translated into plain English.
+      </p>
+
+      <!-- Search -->
+      <div class="reveal mb-12 max-w-xl">
+        <div class="flex items-center border border-white/15 bg-ink-800 focus-within:border-cyan transition-colors">
+          <span class="pl-4 text-white/30 font-mono text-sm">⌕</span>
+          <input
+            id="paper-search"
+            type="text"
+            placeholder="Search by title, author, or topic…"
+            class="flex-1 bg-transparent px-3 py-4 text-sm text-white placeholder:text-white/30 outline-none font-mono tracking-wide"
+          />
+        </div>
+      </div>
+
+      <div id="paper-grid" class="grid md:grid-cols-3 gap-5 items-start">
+        {papers.map((p) => <PaperCard paper={p} />)}
+      </div>
+
+      <p id="no-results" class="hidden text-white/40 mono-label mt-8">
+        No papers match that search.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const input = document.getElementById('paper-search') as HTMLInputElement | null;
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.paper-card'));
+  const noResults = document.getElementById('no-results');
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach((card) => {
+      const hay = card.getAttribute('data-search') || '';
+      const match = q === '' || hay.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    noResults?.classList.toggle('hidden', visible !== 0);
+  });
+</script>
