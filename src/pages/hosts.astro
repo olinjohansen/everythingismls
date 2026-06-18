@@ -4,7 +4,6 @@ import Layout from '../layouts/Layout.astro';
 const hosts = [
   {
     name: 'David Sloan Wilson',
-    role: 'Evolutionary Biologist · Co-Host',
     initials: 'DSW',
     bio: 'Evolutionary biologist and co-host. His work extends evolutionary science beyond the individual to groups, cultures, and whole societies.',
     links: [
@@ -14,16 +13,14 @@ const hosts = [
     ],
   },
   {
-    name: 'Andy',
-    role: 'Co-Host',
-    initials: 'A',
+    name: 'T. Andrew Poehlman',
+    initials: 'TAP',
     bio: 'Co-host and marketing professor (Yale PhD), bringing the social-science side of the conversation. Fuller bio coming soon.',
     links: [],
   },
   {
-    name: 'Olin',
-    role: 'Co-Host',
-    initials: 'O',
+    name: 'Olin Johansen',
+    initials: 'OJ',
     bio: 'Co-host of the show. Fuller bio coming soon.',
     links: [],
   },
@@ -52,7 +49,6 @@ const hosts = [
 
               <div class="flex flex-col">
                 <h2 class="headline text-3xl md:text-4xl text-white leading-none">{h.name}</h2>
-                <p class="mono-label text-cyan mt-2 !text-[0.6rem]">{h.role}</p>
                 <p class="text-white/70 leading-relaxed mt-4 max-w-prose2">{h.bio}</p>
                 {h.links.length > 0 && (
                   <div class="flex flex-wrap gap-3 mt-5">
