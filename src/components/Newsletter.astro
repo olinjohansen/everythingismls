@@ -1,28 +1,48 @@
 ---
-// Newsletter signup (Substack embed). Rendered above the footer on every
-// page via the base Layout. The iframe is forced transparent + borderless so
-// it blends into the dark background; it's full-width on mobile, capped at
-// 480px on larger screens, and centered.
+// Newsletter signup — custom form styled to match the site, POSTing straight
+// to Substack. The form targets a hidden iframe so submitting stays on-page
+// (no navigation away). Rendered above the footer on every page via Layout.
 ---
 
 <section class="relative z-10 bg-ink-900 py-16 md:py-20">
   <div class="container-x text-center">
-    <h2 class="headline text-4xl md:text-5xl text-white mb-3">Stay in the loop</h2>
+    <h2 class="headline text-4xl md:text-5xl text-white mb-3">Newsletter</h2>
     <p class="text-sm mb-8" style="color:#888888">New episodes. Occasional papers.</p>
 
-    <div class="flex justify-center">
-      <iframe
-        src="https://everythingismls.substack.com/embed"
-        title="Subscribe to Everything is MLS on Substack"
-        width="480"
-        height="320"
-        loading="lazy"
-        frameborder="0"
-        scrolling="no"
-        allowtransparency="true"
-        class="newsletter-embed"
-        style="border:none; background:transparent; width:100%; max-width:480px; height:320px;"
-      ></iframe>
-    </div>
+    <form
+      action="https://everythingismls.substack.com/api/v1/free?nojs=true"
+      method="post"
+      target="substack-sink"
+      id="newsletter-form"
+      class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="you@example.com"
+        class="flex-1 px-5 py-4 text-white placeholder:text-white/30 outline-none font-mono text-sm tracking-wide border border-white/15 focus:border-cyan transition-colors"
+        style="background:#111111"
+      />
+      <button type="submit" class="btn btn-primary justify-center !py-4 !px-7">
+        Subscribe
+      </button>
+    </form>
+
+    <p class="text-xs mt-4" style="color:#888888" id="newsletter-note">
+      Via Substack. No spam. Unsubscribe anytime.
+    </p>
+
+    <!-- Hidden sink so the POST submits in the background -->
+    <iframe name="substack-sink" title="Newsletter submission" style="display:none"></iframe>
   </div>
 </section>
+
+<script>
+  // Light confirmation; the POST still lands in the hidden iframe.
+  const form = document.getElementById('newsletter-form');
+  const note = document.getElementById('newsletter-note');
+  form?.addEventListener('submit', () => {
+    if (note) note.textContent = 'Thanks — check your inbox to confirm.';
+  });
+</script>
