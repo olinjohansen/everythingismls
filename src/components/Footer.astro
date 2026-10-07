@@ -1,27 +1,5 @@
 ---
-const columns = [
-  {
-    title: 'Listen',
-    links: [
-      { href: '/episodes', label: 'Episodes' },
-      { href: '/library', label: 'Library' },
-    ],
-  },
-  {
-    title: 'The Theory',
-    links: [
-      { href: '/mls', label: 'MLS' },
-      { href: '/seattle-project', label: 'The Seattle Project' },
-    ],
-  },
-  {
-    title: 'The Show',
-    links: [
-      { href: '/hosts', label: 'Hosts' },
-      { href: '/guests', label: 'Guests' },
-    ],
-  },
-];
+import { platformLinks } from '../data/site.js';
 ---
 
 <footer class="relative z-10 bg-ink-900">
@@ -31,44 +9,28 @@ const columns = [
     style="background:linear-gradient(to right, transparent, rgba(255,255,255,0.1) 50%, transparent)"
   >
   </div>
-  <div class="container-x py-16">
-    <div class="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <span class="block w-2 h-2 bg-cyan"></span>
-          <span class="headline text-2xl text-white tracking-headline">
-            Everything is <span class="text-cyan">MLS</span>
-          </span>
-        </div>
-        <div class="flex gap-3 mt-6">
-          <a href="#" class="btn btn-ghost !py-2.5 !px-4">Spotify</a>
-          <a href="#" class="btn btn-ghost !py-2.5 !px-4">YouTube</a>
-        </div>
-      </div>
+  <div class="container-x py-14">
+    <div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <span class="block w-2 h-2 bg-cyan"></span>
+        <span class="headline text-2xl text-white tracking-headline">
+          Everything is <span class="text-cyan">MLS</span>
+        </span>
+      </a>
 
-      {
-        columns.map((col) => (
-          <div>
-            <h3 class="mono-label text-cyan mb-5">{col.title}</h3>
-            <ul class="space-y-3">
-              {col.links.map((l) => (
-                <li>
-                  <a
-                    href={l.href}
-                    class="text-white/55 hover:text-white text-sm transition-colors"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+      <div class="flex flex-wrap gap-3">
+        {
+          platformLinks.map((l) => (
+            <a href={l.href} class="btn btn-ghost !py-2.5 !px-4">
+              {l.label}
+            </a>
+          ))
+        }
+      </div>
     </div>
 
     <div
-      class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row gap-4 md:items-center md:justify-between"
+      class="mt-12 pt-8 border-t border-white/10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
     >
       <p class="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/30">
         © {new Date().getFullYear()} Everything is MLS — Multi-Level Selection

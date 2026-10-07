@@ -10,7 +10,7 @@ export const papers = [
       'People sharing a limited resource — a fishery, a forest, a budget — don’t always wreck it. Given the right rules, ordinary communities govern themselves better than markets or governments do.',
     tags: ['Governance', 'Cooperation'],
     addedBy: 'Andy',
-    relatedEpisodes: [{ number: '007', slug: 'seattle-is-a-superorganism' }],
+    relatedEpisodes: [{ number: '001', slug: 'tinbergens-four-questions' }],
   },
   {
     slug: 'wilson-sober-altruism',
@@ -21,7 +21,7 @@ export const papers = [
       'The book that put group selection back on the table. Real altruism exists, and natural selection can favor it — as long as it’s selection between groups, not just within them.',
     tags: ['Altruism', 'Group Selection'],
     addedBy: 'DSW',
-    relatedEpisodes: [{ number: '007', slug: 'seattle-is-a-superorganism' }],
+    relatedEpisodes: [{ number: '001', slug: 'tinbergens-four-questions' }],
   },
   {
     slug: 'major-transitions',
@@ -32,7 +32,8 @@ export const papers = [
       'Every big leap in life’s history — genes into cells, cells into bodies, bodies into societies — is the same trick repeated: a crowd of competitors becomes a single cooperating unit.',
     tags: ['Transitions', 'Cooperation'],
     addedBy: 'Olin',
-    relatedEpisodes: [{ number: '007', slug: 'seattle-is-a-superorganism' }],
+    // Not cited in episode 001; no episode backlink yet.
+    relatedEpisodes: [],
   },
 ];
 

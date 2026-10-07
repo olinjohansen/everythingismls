@@ -1,10 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import LatestEpisode from '../components/LatestEpisode.astro';
+import EpisodeCard from '../components/EpisodeCard.astro';
+import { episodes } from '../data/episodes.js';
 ---
 
 <Layout>
   <Hero />
-  <LatestEpisode />
+
+  <section class="section section-pull-up" id="episodes">
+    <div class="container-x">
+      <p class="eyebrow mb-10 reveal">Episodes</p>
+
+      {
+        episodes.length > 0 ? (
+          <div class="space-y-8">
+            {episodes.map((e, i) => (
+              <div class="reveal">
+                <EpisodeCard episode={e} latest={i === 0} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="edge-card p-12 text-center reveal">
+            <p class="mono-label text-cyan mb-3">Coming soon</p>
+            <p class="headline text-3xl text-white">Episode 001 is on the way.</p>
+          </div>
+        )
+      }
+    </div>
+  </section>
 </Layout>

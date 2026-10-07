@@ -1,10 +1,16 @@
 ---
-// Full-viewport cinematic hero.
-// Photo: brutalist overpass emerging through PNW fog — human structure
-// rising out of nature. The thesis in a single frame.
+// Compact brand header for the front page. Not a full-viewport hero any more —
+// the episode list is the point of the page, so this establishes the show and
+// then gets out of the way.
+// Photo: brutalist overpass emerging through PNW fog — human structure rising
+// out of nature. The thesis in a single frame.
+import { site, platformLinks } from '../data/site.js';
+
+const spotify = platformLinks.find((p) => p.key === 'spotify');
+const youtube = platformLinks.find((p) => p.key === 'youtube');
 ---
 
-<section class="relative min-h-[100svh] flex items-center overflow-hidden">
+<section class="relative flex items-end overflow-hidden min-h-[clamp(26rem,58svh,38rem)] pt-[72px]">
   <!-- Background photo -->
   <div class="absolute inset-0 z-0 film-vignette scanlines edge-soak">
     <img
@@ -13,58 +19,43 @@
       class="w-full h-full object-cover object-center scale-105"
       fetchpriority="high"
     />
-    <!-- Layered dark overlays for legibility + mood -->
+    <!-- Layered dark overlays for legibility + mood. The bottom stop is fully
+         opaque so the photo dissolves into the episode list below it. -->
     <div class="absolute inset-0 bg-ink-900/55"></div>
     <div
       class="absolute inset-0"
-      style="background:linear-gradient(180deg, rgba(8,8,8,0.75) 0%, rgba(8,8,8,0.25) 38%, rgba(8,8,8,0.85) 100%)"
+      style="background:linear-gradient(180deg, rgba(8,8,8,0.8) 0%, rgba(8,8,8,0.3) 32%, rgba(8,8,8,0.97) 100%)"
     >
     </div>
     <div
       class="absolute inset-0"
-      style="background:radial-gradient(120% 90% at 50% 42%, rgba(0, 212, 212,0.10) 0%, rgba(8,8,8,0) 55%)"
+      style="background:radial-gradient(120% 90% at 50% 40%, rgba(0, 212, 212,0.12) 0%, rgba(8,8,8,0) 58%)"
     >
     </div>
   </div>
 
-  <div class="relative z-10 w-full px-[clamp(1.25rem,5vw,3.5rem)]">
-    <div class="w-full">
-      <h1
-        class="headline text-white leading-[0.86] animate-fade-up"
-        style="animation-delay:0.08s"
-      >
-        <span class="block text-[clamp(2.5rem,12.5vw,16rem)]">Everything</span>
-        <span class="block text-[clamp(2.5rem,12.5vw,16rem)] whitespace-nowrap">
-          is <span class="text-cyan-glow">MLS.</span>
-        </span>
-      </h1>
+  <!-- container-x so the headline's left edge lines up with the episode list -->
+  <div class="relative z-10 container-x pb-[clamp(2.5rem,6vw,4rem)]">
+    <h1
+      class="headline text-white leading-[0.88] animate-fade-up"
+      style="animation-delay:0.08s"
+    >
+      <span class="block text-[clamp(2.75rem,10vw,8rem)]">Everything</span>
+      <span class="block text-[clamp(2.75rem,10vw,8rem)] whitespace-nowrap">
+        is <span class="text-cyan-glow">MLS.</span>
+      </span>
+    </h1>
 
-      <p
-        class="eyebrow font-display tracking-[0.06em] font-normal text-white mt-8 animate-fade-up"
-        style="animation-delay:0.16s"
-      >
-        A podcast about Multi-Level Selection
-      </p>
+    <p
+      class="eyebrow font-display tracking-[0.06em] font-normal text-white mt-6 animate-fade-up"
+      style="animation-delay:0.16s"
+    >
+      {site.tagline}
+    </p>
 
-      <div
-        class="mt-10 flex flex-wrap gap-4 animate-fade-up"
-        style="animation-delay:0.24s"
-      >
-        <a href="#" class="btn btn-primary">
-          ▸ Listen on Spotify
-        </a>
-        <a href="#" class="btn btn-ghost">
-          ▸ Watch on YouTube
-        </a>
-      </div>
+    <div class="mt-8 flex flex-wrap gap-4 animate-fade-up" style="animation-delay:0.24s">
+      <a href={spotify.href} class="btn btn-primary">▸ Listen on Spotify</a>
+      <a href={youtube.href} class="btn btn-ghost">▸ Watch on YouTube</a>
     </div>
-  </div>
-
-  <!-- Scroll hint -->
-  <div
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-  >
-    <span class="block w-px h-8 bg-gradient-to-b from-cyan to-transparent animate-scroll-hint"
-    ></span>
   </div>
 </section>
