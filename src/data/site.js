@@ -1,6 +1,5 @@
 // Site-wide constants. The show's platform URLs live here only — the header,
 // footer and the hero read from this one place.
-// TODO: replace the remaining '#' entries once those feeds are live.
 export const site = {
   name: 'Everything is MLS',
   tagline: 'A podcast about Multi-Level Selection',
@@ -9,14 +8,21 @@ export const site = {
   platforms: {
     spotify: 'https://open.spotify.com/show/4XQMhP3tUH2sFpxqb4Xi6S',
     youtube: 'https://www.youtube.com/@Everything_is_MLS',
-    apple: '#', // TODO: the last dead link — nav and footer only.
+    // Set this to the Apple Podcasts show URL and the Apple link reappears in
+    // the nav and footer on its own. Left empty it is simply not rendered,
+    // rather than shipping a link that goes nowhere.
+    apple: '',
   },
 };
 
-// Only the platforms with a real URL get a button; '#' entries still render
-// so the layout is stable before launch.
-export const platformLinks = [
-  { key: 'spotify', label: 'Spotify', href: site.platforms.spotify },
-  { key: 'youtube', label: 'YouTube', href: site.platforms.youtube },
-  { key: 'apple', label: 'Apple', href: site.platforms.apple },
+const ORDER = [
+  { key: 'spotify', label: 'Spotify' },
+  { key: 'youtube', label: 'YouTube' },
+  { key: 'apple', label: 'Apple' },
 ];
+
+// Only platforms with a real URL get a link — an empty entry is dropped.
+export const platformLinks = ORDER.filter(({ key }) => site.platforms[key]).map((p) => ({
+  ...p,
+  href: site.platforms[p.key],
+}));

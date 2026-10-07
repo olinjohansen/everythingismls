@@ -20,12 +20,14 @@ const PLATFORMS = [
   { key: 'apple', label: 'Apple' },
 ];
 
+// A platform with no URL on either the episode or the show is dropped, so the
+// page never renders a button that goes nowhere.
 export const listenLinks = (episode) =>
   PLATFORMS.map(({ key, label }) => ({
     key,
     label,
-    href: episode.links?.[key] || site.platforms[key] || '#',
-  }));
+    href: episode.links?.[key] || site.platforms[key] || '',
+  })).filter((l) => l.href);
 
 // 'mm:ss' or 'h:mm:ss' → seconds. Returns null on anything unparseable so a
 // malformed timestamp degrades to plain text instead of a broken link.

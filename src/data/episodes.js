@@ -45,7 +45,8 @@ export const episodes = [
       youtube: 'https://www.youtube.com/watch?v=2MJqiBGPHQM',
       // ?si=… share-tracking param dropped; the bare episode URL is canonical.
       spotify: 'https://open.spotify.com/episode/1BUloP404CZSXfylP6SJkd',
-      apple: '#',
+      apple: '', // no Apple feed yet; the button is left out rather than dead
+
     },
 
     chapters: [
